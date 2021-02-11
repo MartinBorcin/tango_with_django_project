@@ -16,12 +16,13 @@ def index(request):
     context_dict['categories'] = category_list
     context_dict['pages'] = page_list
     visitor_cookie_handler(request)
-    context_dict['visits'] = request.session['visits']
     return render(request, 'rango/index.html', context=context_dict)
 
 
 def about(request):
+    visitor_cookie_handler(request)
     context_dict = {'boldmessage': 'This tutorial has been put together by Martin!'}
+    context_dict['visits'] = request.session['visits']
     return render(request, 'rango/about.html', context=context_dict)
 
 
